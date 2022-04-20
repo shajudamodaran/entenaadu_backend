@@ -1,5 +1,5 @@
 var express = require('express');
-const Hospitals = require('../Mongo/hospitalDAO');
+const {Hospitals} = require('../Mongo/DAOs');
 
 var router = express.Router();
 

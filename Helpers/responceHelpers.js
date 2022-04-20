@@ -3,5 +3,10 @@ let sendIncompleteParamsresponce = (res, message) =>{
     res.send(message)
 }
 
+let sendSuccesssresponce = (res, message) =>{
+    res.status(200)
+    res.send(message)
+}
 
-module.exports={sendIncompleteParamsresponce}
+
+module.exports={sendIncompleteParamsresponce,sendSuccesssresponce}

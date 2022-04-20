@@ -1,5 +1,5 @@
 var express = require('express');
-const Contacts = require('../Mongo/contactDAO');
+const {Contacts} =require('../Mongo/DAOs');
 
 var router = express.Router();
 

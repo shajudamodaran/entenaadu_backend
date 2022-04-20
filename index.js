@@ -27,24 +27,21 @@ async function main(){
 
 main().catch(console.error);
 
-const LSG = require('./Mongo/db.js');
+
 
 //API Calls......................................................................................................
 app.get('/', (req, res) => {
 
-   getMasterData(client).then((result)=>{
 
-    if(result)
-    {
-      res.send(result)
-    }
-    else{
+      res.send("GET - Ente naadu backend version 1.0")
+   
+})
 
-    }
-    res.send(`No listings found `);
+app.post('/', (req, res) => {
 
-   })
- 
+
+  res.send("POST - Ente naadu backend version 1.0")
+
 })
 
 
@@ -75,49 +72,6 @@ app.use('/hospitals', hospitals);
 app.use('/contacts', contacts);
 app.use('/complaints', complaints);
 
-
-
-//Functions......................................................................................................
-async function listDatabases(client)
-{
-  databasesList = await client.db().admin().listDatabases();
-  console.log("Databases:");
-  databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-};
-
-
-async function getMasterData(client) {
-
-  await client.connect();
-  
-  const result = await client.db("entenaadu").collection("LSG").find({}).toArray()
-  if (result) 
-  {
-     return(result[0])
-  } else 
-  {
-      console.log(`No listings found `);
-  }
-}
-
-
-async function getFeedsOfLsg(lsgCode){
-
-  await client.connect();
-
-  
-  const result = LSG.find({"_id":lsgCode},{details:1}).toArray()
-
-  if (result) 
-  {
-     return(result)
-
-  } else 
-  {
-      console.log(`No listings found `);
-  }
-
-}
 
 
 

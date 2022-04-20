@@ -1,5 +1,5 @@
 var express = require('express');
-const LSG = require('../Mongo/lsg');
+const {LSG} =require('../Mongo/DAOs');
 
 var router = express.Router();
 

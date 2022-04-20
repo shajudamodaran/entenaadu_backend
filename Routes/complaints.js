@@ -1,5 +1,5 @@
 var express = require('express');
-const { sendIncompleteParamsresponce } = require('../Helpers/responceHelpers');
+const { sendIncompleteParamsresponce, sendSuccesssresponce } = require('../Helpers/responceHelpers');
 const { Complaints } = require('../Mongo/DAOs');
 
 
@@ -20,21 +20,38 @@ router.get('/', async function (req, res) {
 
 
 });
-router.post('/', function (req, res) {
+router.post('/', async function (req, res) {
 
     let { lsg, complaint } = req.body
 
-    if(!lsg)
-    {
-       sendIncompleteParamsresponce(res,"Lsg code missing")
+    if (!lsg) {
+        sendIncompleteParamsresponce(res, "Lsg code missing in request")
     }
-    else if(!complaint)
-    {
-       sendIncompleteParamsresponce(res,"no complaints")
+    else if (!complaint) {
+        sendIncompleteParamsresponce(res, "Complaint is missing in request")
+    }
+    else {
+
+        let obj = {
+            complaint:complaint,
+            image:"",
+            lastupdation:new Date(),
+            added_date:new Date(),
+            lsg:lsg
+        }
+
+        let result = await Complaints.insertOne(obj, function (err, resp) {
+            if (err) throw err ;
+
+            sendSuccesssresponce(resp,`1 complaint inserted ,${res}`)
+
+
+        });
+
     }
 
 
-    res.send('POST route on complaints.');
+
 });
 
 //export this router to use in our index.js
