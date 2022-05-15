@@ -33,7 +33,7 @@ router.get('/', async function (req, res) {
 
 
 
-        res.send(result)
+        res.send({data:result})
 
     }
 

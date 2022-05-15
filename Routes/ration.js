@@ -1,23 +1,23 @@
 var express = require('express');
-const {LSG} =require('../Mongo/DAOs');
+const { ObjectId } = require('mongodb');
+const {RationShopes,RationItems} =require('../Mongo/DAOs');
 
 var router = express.Router();
 
 router.get('/', async function (req, res) {
 
-    let { lsg } = req.body
+    let { lsg, rationShopId } = req.body
 
-    const query = { "_id": lsg };
-    const options = {
-        "projection": { feeds: 1, _id:0 }
-    };
+    const query = { "lsg": lsg, "_id":new ObjectId(rationShopId) };
 
-    const result = await LSG.findOne(query, options)
+    const result = await RationShopes.findOne(query)
 
     res.send({data:result})
 
 
 });
+
+
 router.post('/', function (req, res) {
     res.send('POST route on feeds.');
 });

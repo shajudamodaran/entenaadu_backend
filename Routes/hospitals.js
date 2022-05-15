@@ -33,7 +33,7 @@ router.get('/', async function (req, res) {
 
 
 
-        res.send(result)
+        res.send({data:result})
 
     }
 
@@ -41,7 +41,7 @@ router.get('/', async function (req, res) {
 
 });
 router.post('/', function (req, res) {
-    res.send('POST route on Contacts.');
+    res.send('POST route on Hospitals.');
 });
 
 //export this router to use in our index.js

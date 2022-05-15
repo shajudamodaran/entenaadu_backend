@@ -10,6 +10,10 @@ var bloodbank = require('./Routes/bloodbank.js');
 var hospitals = require('./Routes/hospitals.js');
 var contacts = require('./Routes/contacts');
 var complaints = require('./Routes/complaints');
+var jobes = require('./Routes/jobes');
+var schemes = require('./Routes/schemes');
+var ration = require('./Routes/ration');
+var users = require('./Routes/users');
 
 
 async function main(){
@@ -71,6 +75,11 @@ app.use('/bloodbank', bloodbank);
 app.use('/hospitals', hospitals);
 app.use('/contacts', contacts);
 app.use('/complaints', complaints);
+app.use('/jobes', jobes);
+app.use('/schemes', schemes);
+app.use('/ration', ration);
+app.use('/users', users);
+
 
 
 

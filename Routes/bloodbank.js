@@ -26,7 +26,7 @@ router.get('/', async function (req, res) {
 
         const result = await BloodBank.find(query).toArray()
 
-        res.send(result)
+        res.send({data:result})
 
 
     }
@@ -100,7 +100,7 @@ router.post('/', async function (req, res) {
             let result= await BloodBank.insertOne(obj)
 
             res.status(200)
-            res.send(result)
+            res.send({data:result})
 
         }
 

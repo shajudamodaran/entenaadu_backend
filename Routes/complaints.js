@@ -16,7 +16,7 @@ router.get('/', async function (req, res) {
 
     const result = await Complaints.find(query).toArray()
 
-    res.send(result)
+    res.send({data:result})
 
 
 });
